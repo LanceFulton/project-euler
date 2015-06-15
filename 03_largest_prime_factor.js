@@ -9,25 +9,20 @@ var isPrime = function(value){
   return true;
 };
 
-var isFactor = function(product, factor){
-  if (product%factor === 0){
+var isFactor = function(product, value){
+  if (product%value === 0){
     return true;
   }
   return false;
 }
 
 var largestPrime = function(value){
-  var value = value;
-  var factors = [];
-  for (var i = value-1 ; i > 1 ; i--){
+  for (var i = 2 ; i < value/2 ; i++){
     if ( isFactor(value, i) ){
-      factors.push(i);
-    }
-  }
-  console.log('factors: ', factors);
-  for (var i = factors.length-1 ; i >= 0 ; i--){
-    if ( isPrime(factors[i]) ){
-      return factors[i];
+      var greaterFactor = value/i;
+      if ( isPrime(greaterFactor) ){
+        return greaterFactor;
+      }
     }
   }
   return null;
